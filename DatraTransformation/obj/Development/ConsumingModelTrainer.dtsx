@@ -11,46 +11,64 @@
   DTS:LocaleID="2057"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="16"
-  DTS:VersionGUID="{06F1F31E-3AC9-49A3-8A47-E8D69256086F}">
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{7515FD16-6C2A-4186-84B7-DE57A0FF7AB8}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:PackageParameters>
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:DTSID="{46D471B6-87AD-4227-A473-80895DE2DBFC}"
-      DTS:ObjectName="forecastDate">
+      DTS:DTSID="{42423385-409C-4669-8F6F-14CD79163F2F}"
+      DTS:ObjectName="connectionString">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">12-02-2016</DTS:Property>
+        DTS:Name="ParameterValue">Server=localhost;Database=kaggle_wallmart;Integrated Security=True;</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{46D471B6-87AD-4227-A473-80895DE2DBFC}"
+      DTS:ObjectName="CutOffDate">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">2016-05-23</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="3"
       DTS:DTSID="{7CF1C88A-3C7A-435F-9828-F95FB80C291B}"
-      DTS:ObjectName="forecastWindow">
+      DTS:ObjectName="FutureDays">
       <DTS:Property
         DTS:DataType="3"
-        DTS:Name="ParameterValue">7</DTS:Property>
+        DTS:Name="ParameterValue">28</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="8"
-      DTS:DTSID="{5B7EAA24-671F-44B6-893C-983459A66967}"
-      DTS:ObjectName="productName">
+      DTS:DTSID="{6BBEA768-0A3E-4A56-A7A3-460D154DF708}"
+      DTS:ObjectName="ModelsPath">
       <DTS:Property
         DTS:DataType="8"
-        DTS:Name="ParameterValue">HOBBIES_1_278_CA_1_evaluation</DTS:Property>
+        DTS:Name="ParameterValue">c:\temp\WallMartModels</DTS:Property>
     </DTS:PackageParameter>
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="3"
       DTS:DTSID="{652FD2E4-0A5A-4A4C-94FF-FC156EF4B673}"
-      DTS:ObjectName="timeWindow">
+      DTS:ObjectName="PreviousDays">
       <DTS:Property
         DTS:DataType="3"
-        DTS:Name="ParameterValue">365</DTS:Property>
+        DTS:Name="ParameterValue">0</DTS:Property>
+    </DTS:PackageParameter>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{5B7EAA24-671F-44B6-893C-983459A66967}"
+      DTS:ObjectName="product">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue">HOBBIES_1_278_CA_1_evaluation</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables />
@@ -70,15 +88,15 @@
           version="1">
           <components>
             <component
-              refId="Package\Loads Forecasted data\Derived Column"
+              refId="Package\Loads Forecasted data\Adds ProcessId"
               componentClassID="Microsoft.DerivedColumn"
               contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
               description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
-              name="Derived Column"
+              name="Adds ProcessId"
               usesDispositions="true">
               <inputs>
                 <input
-                  refId="Package\Loads Forecasted data\Derived Column.Inputs[Derived Column Input]"
+                  refId="Package\Loads Forecasted data\Adds ProcessId.Inputs[Derived Column Input]"
                   description="Input to the Derived Column Transformation"
                   name="Derived Column Input">
                   <externalMetadataColumns />
@@ -86,31 +104,337 @@
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Loads Forecasted data\Derived Column.Outputs[Derived Column Output]"
+                  refId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Output]"
                   description="Default Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   name="Derived Column Output"
-                  synchronousInputId="Package\Loads Forecasted data\Derived Column.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Loads Forecasted data\Adds ProcessId.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Output].Columns[ProcessID]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="36"
+                      lineageId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Output].Columns[ProcessID]"
+                      name="ProcessID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[$Project::ProcessId]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[$Project::ProcessId]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Output].Columns[Startdate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="10"
+                      lineageId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Output].Columns[Startdate]"
+                      name="Startdate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[$Package::CutOffDate]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[$Package::CutOffDate]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Output].Columns[WindowSize]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Output].Columns[WindowSize]"
+                      name="WindowSize"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[$Package::FutureDays]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[$Package::FutureDays]</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Output].Columns[Product]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="29"
+                      lineageId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Output].Columns[Product]"
+                      name="Product"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">@[$Package::product]</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">@[$Package::product]</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Loads Forecasted data\Derived Column.Outputs[Derived Column Error Output]"
+                  refId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Error Output]"
                   description="Error Output of the Derived Column Transformation"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Derived Column Error Output"
-                  synchronousInputId="Package\Loads Forecasted data\Derived Column.Inputs[Derived Column Input]">
+                  synchronousInputId="Package\Loads Forecasted data\Adds ProcessId.Inputs[Derived Column Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Loads Forecasted data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      refId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Loads Forecasted data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Loads Forecasted data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      refId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Loads Forecasted data\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Loads Forecasted data\Predictions"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Predictions"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Predictions]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Loads Forecasted data\Predictions.Connections[OleDbConnection]"
+                  connectionManagerID="{43B306C1-D66A-4C39-8BD3-49A599BDA42A}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[localhost.kaggle_wallmart]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].Columns[UpperBound]"
+                      cachedDataType="i4"
+                      cachedName="UpperBound"
+                      externalMetadataColumnId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[UpperBound]"
+                      lineageId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[UpperBound]" />
+                    <inputColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].Columns[ForecastSales]"
+                      cachedDataType="i4"
+                      cachedName="ForecastSales"
+                      externalMetadataColumnId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[ForecastSales]"
+                      lineageId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[ForecastSales]" />
+                    <inputColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].Columns[ActualSales]"
+                      cachedDataType="i4"
+                      cachedName="ActualSales"
+                      externalMetadataColumnId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[ActualSales]"
+                      lineageId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[ActualSales]" />
+                    <inputColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].Columns[LowerBound]"
+                      cachedDataType="i4"
+                      cachedName="LowerBound"
+                      externalMetadataColumnId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[LowerBound]"
+                      lineageId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[LowerBound]" />
+                    <inputColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].Columns[Date]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="Date"
+                      externalMetadataColumnId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      lineageId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[Date]" />
+                    <inputColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].Columns[Index]"
+                      cachedDataType="i4"
+                      cachedName="Index"
+                      externalMetadataColumnId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[Index]"
+                      lineageId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[Index]" />
+                    <inputColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].Columns[ProcessID]"
+                      cachedDataType="wstr"
+                      cachedLength="36"
+                      cachedName="ProcessID"
+                      externalMetadataColumnId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[ProcessID]"
+                      lineageId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Output].Columns[ProcessID]" />
+                    <inputColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].Columns[Startdate]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Startdate"
+                      externalMetadataColumnId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[Startdate]"
+                      lineageId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Output].Columns[Startdate]" />
+                    <inputColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].Columns[WindowSize]"
+                      cachedDataType="i4"
+                      cachedName="WindowSize"
+                      externalMetadataColumnId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[WindowSize]"
+                      lineageId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Output].Columns[WindowSize]" />
+                    <inputColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].Columns[Product]"
+                      cachedDataType="wstr"
+                      cachedLength="29"
+                      cachedName="Product"
+                      externalMetadataColumnId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[Product]"
+                      lineageId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Output].Columns[Product]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[UpperBound]"
+                      dataType="i4"
+                      name="UpperBound" />
+                    <externalMetadataColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[ForecastSales]"
+                      dataType="i4"
+                      name="ForecastSales" />
+                    <externalMetadataColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[ActualSales]"
+                      dataType="i4"
+                      name="ActualSales" />
+                    <externalMetadataColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[LowerBound]"
+                      dataType="i4"
+                      name="LowerBound" />
+                    <externalMetadataColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Date" />
+                    <externalMetadataColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[Index]"
+                      dataType="i4"
+                      name="Index" />
+                    <externalMetadataColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[ProcessID]"
+                      dataType="wstr"
+                      length="36"
+                      name="ProcessID" />
+                    <externalMetadataColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[Startdate]"
+                      dataType="wstr"
+                      length="10"
+                      name="Startdate" />
+                    <externalMetadataColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[WindowSize]"
+                      dataType="i4"
+                      name="WindowSize" />
+                    <externalMetadataColumn
+                      refId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input].ExternalColumns[Product]"
+                      dataType="wstr"
+                      length="250"
+                      name="Product" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Loads Forecasted data\Predictions.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Loads Forecasted data\Predictions.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Loads Forecasted data\Predictions.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Loads Forecasted data\Predictions.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Loads Forecasted data\Predictions.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -218,6 +542,54 @@ public class Variables
     public Variables(ScriptComponent Component)
     {
         ParentComponent = Component;
+    }
+
+    public String connectionString
+    {
+        get
+        {
+            return (String)(ParentComponent.ReadOnlyVariables["connectionString"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+    public String CutOffDate
+    {
+        get
+        {
+            return (String)(ParentComponent.ReadOnlyVariables["CutOffDate"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+    public Int32 FutureDays
+    {
+        get
+        {
+            return (Int32)(ParentComponent.ReadOnlyVariables["FutureDays"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+    public String ModelsPath
+    {
+        get
+        {
+            return (String)(ParentComponent.ReadOnlyVariables["ModelsPath"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+    public Int32 PreviousDays
+    {
+        get
+        {
+            return (Int32)(ParentComponent.ReadOnlyVariables["PreviousDays"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
+    }
+
+    public String product
+    {
+        get
+        {
+            return (String)(ParentComponent.ReadOnlyVariables["product"].GetValueWithContext(ScriptComponent.EvaluatorContext));
+        }
     }
 
 }
@@ -363,6 +735,7 @@ using System.Data;
 using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
 using Microsoft.SqlServer.Dts.Runtime.Wrapper;
 using ModelLib;
+using System.Collections.Generic;
 #endregion
 
 /// <summary>
@@ -428,6 +801,7 @@ public class ScriptMain : UserComponent
      */
     #endregion
 
+    List<ModelLib.ModelOutputExt> predictions;
     /// <summary>
     /// This method is called once, before rows begin to be processed in the data flow.
     ///
@@ -439,8 +813,29 @@ public class ScriptMain : UserComponent
         /*
          * Add your code here
          */
+        Boolean fireAgain = true;
+
+        string product = Variables.product;
+        string connectionstring = Variables.connectionString;
+        string ModelsPath = Variables.ModelsPath;
+        int FutureDays = Variables.FutureDays;
+        int PreviousDays = Variables.PreviousDays;
+        string CutOffDate = Variables.CutOffDate;
+
+        ComponentMetaData.FireInformation(10, "Process Values 1)", "Creating Predict Object...", "", 0, fireAgain);
+        ModelPredict mlPredict = new ModelPredict(connectionstring,
+                                                  ModelsPath,
+                                                  product);
 
 
+        ComponentMetaData.FireInformation(10, "Process Values 2)", "Extracting data...", "", 0, fireAgain);
+        string strTMP=mlPredict.ExtractData(PreviousDays, FutureDays, CutOffDate);
+
+
+        ComponentMetaData.FireInformation(10, "Process Values 3)", "Make Predictions...", "", 0, fireAgain);
+        this.predictions = mlPredict.PredictData(FutureDays);
+
+      
     }
 
     /// <summary>
@@ -454,7 +849,11 @@ public class ScriptMain : UserComponent
         /*
          * Add your code here
          */
-        ModelPredict mdlPredict = new ModelPredict();
+
+        Boolean fireAgain = true;
+
+        ComponentMetaData.FireInformation(10, "Process Values 4)", "Finish Prediciton...", "", 0, fireAgain);
+
 
     }
 
@@ -464,8 +863,20 @@ public class ScriptMain : UserComponent
           Add rows by calling the AddRow method on the member variable named "<Output Name>Buffer".
           For example, call MyOutputBuffer.AddRow() if your output was named "MyOutput".
         */
-        Output0Buffer.AddRow();
-        Output0Buffer.Column = 1;
+        foreach (var pred in this.predictions)
+        {
+            
+            Output0Buffer.AddRow();
+            Output0Buffer.ActualSales = (Int32) pred.TotalSales;
+            Output0Buffer.ForecastSales = (Int32)pred.ForecastedSales;
+            Output0Buffer.UpperBound = (Int32)pred.UpperBoundSales;
+            Output0Buffer.LowerBound = (Int32)pred.LowerBoundSales;
+            Output0Buffer.Index = (Int32)pred.indexX;
+            Output0Buffer.Date = pred.SalesDate;
+
+        }
+
+        
     }
 
 }
@@ -495,20 +906,130 @@ public class Output0Buffer: ScriptBuffer
     {
     }
 
-    public Int32 Column
+    public Int32 UpperBound
     {
         set
         {
             this[0] = value;
         }
     }
-    public bool Column_IsNull
+    public bool UpperBound_IsNull
     {
         set
         {
             if (value)
             {
                 SetNull(0);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Int32 ForecastSales
+    {
+        set
+        {
+            this[1] = value;
+        }
+    }
+    public bool ForecastSales_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(1);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Int32 ActualSales
+    {
+        set
+        {
+            this[2] = value;
+        }
+    }
+    public bool ActualSales_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(2);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Int32 LowerBound
+    {
+        set
+        {
+            this[3] = value;
+        }
+    }
+    public bool LowerBound_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(3);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public String Date
+    {
+        set
+        {
+            this[4] = value;
+        }
+    }
+    public bool Date_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(4);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    public Int32 Index
+    {
+        set
+        {
+            this[5] = value;
+        }
+    }
+    public bool Index_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(5);
             }
             else
             {
@@ -619,7 +1140,7 @@ namespace SC_b077e80179a64d32bd87270aa16da412.Properties {
       <HintPath>C:\Config\Assemblies\Microsoft.ML.TimeSeries.1.5.0\lib\netstandard2.0\Microsoft.ML.TimeSeries.dll</HintPath>
     </Reference>
     <Reference Include="ModelLib">
-      <HintPath>C:\Config\Assembly\ModelLib.dll</HintPath>
+      <HintPath>C:\Src\WallmartComp\bin\ModelLib\ModelLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -683,7 +1204,7 @@ namespace SC_b077e80179a64d32bd87270aa16da412.Properties {
     <msb:CodeName>SC_b077e80179a64d32bd87270aa16da412</msb:CodeName>
     <msb:Language>msBuild</msb:Language>
     <msb:DisplayName>SC_b077e80179a64d32bd87270aa16da412</msb:DisplayName>
-    <msb:ProjectId>{CD8935E4-665B-4139-8679-93EDD272D00B}</msb:ProjectId>
+    <msb:ProjectId>{A09705EC-4725-4F44-9023-53C1C3A9DC30}</msb:ProjectId>
   </msb:PropertyGroup>
   <msb:ItemGroup>
     <msb:Project Include="SC_b077e80179a64d32bd87270aa16da412.csproj" />
@@ -830,113 +1351,167 @@ namespace SC_b077e80179a64d32bd87270aa16da412.Properties {
                     <arrayElement
                       dataType="System.String"><![CDATA[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
-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
+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
-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
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAADg9AABPAAAAAEAAAEgEAAAAAAAAAAAAAAAAAAAA
 AAAAAGAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-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
-BgDyIAAAAACBAFIABgAGABAhAAAAAMYAEQaGAAYA8CAAAAAAxgFiBQYACgBlIQAAAACGGCwEkgAK
-AHQhAAAAAIYYLASSAAsAgyEAAAAAgxgsBAYADACLIQAAAACTCBgEmAAMALchAAAAAJMIwACdAAwA
-viEAAAAAkwjMAKIADADGIQAAAACWCJkFqAANAM0hAAAAAIYYLAQGAA0A1SEAAAAAkRgyBK0ADQAA
-AAEAEQQAAAIAEgUAAAMA5AMAAAEAygIAAAEAygIAAAEAWgUAAAIAOQQAAAMATAUAAAQA5AMAAAEA
-yQUAAAEAyQUAAAEAygIJACwEAQARACwEBgAZACwECgApACwEEAAxACwEEAA5ACwEEABBACwEEABJ
-ACwEEABRACwEEABZACwEEABhACwEEABpACwEBgCZACwEBgC5ACwEFQDJACwEBgCJALMCBgCJAL4C
-BgDRACwEBgBxACwEGwBxAEIDJQBxADoDAQDhACwEEABxAB0GBgBxAIoFBgBxAI0FKwCJACwEBgCJ
-ADQAMwCJACYFOgCRACwEBgDpAIgAQADpACQGRwChACwETADBACwEBgAuAAsAyAAuABMA0QAuABsA
-8AAuACMA+QAuACsAIgEuADMAIgEuADsAIgEuAEMA+QAuAEsAKAEuAFMAIgEuAFsAPwFDAGMAiQFp
-AHMA8ACJAHMA8ADjAGsAiQEBAXsAiQEvAAMAAQAHAAMACAAFAAAAbQOxAAAALAO1AAAAHAS5AAAA
-4AC+AAAAnQXDAAEABgADAAEABwAFAAIAEwAHAAIAFAAJAAEAFQAJAAIAFgALAASAAAABAAAAAAAA
-AAAAAAAAAAEAAAAEAAAAAAAAAAAAAABTAEkAAAAAAA8AAAAAAAAAAAAAAFwA0wUAAAAADwAAAAAA
-AAAAAAAAXADwBQAAAAAEAAAAAAAAAAAAAABTAEsDAAAAAAEAAAAAAAAAAAAAAAAAQAAAAAAAAAAA
-AAEAAACHBAAAAAAAAABTQ19iMDc3ZTgwMTc5YTY0ZDMyYmQ4NzI3MGFhMTZkYTQxMgBJbnQzMgA8
-TW9kdWxlPgBHZXRPdXRwdXRJRABNb2RlbExpYgBtc2NvcmxpYgBNYXJrT3V0cHV0c0ZpbmlzaGVk
-AGRlZmF1bHRJbnN0YW5jZQBSdW50aW1lVHlwZUhhbmRsZQBHZXRUeXBlRnJvbUhhbmRsZQBNaWNy
-b3NvZnQuU3FsU2VydmVyLkR0cy5QaXBlbGluZQBUeXBlAGdldF9DdWx0dXJlAHNldF9DdWx0dXJl
-AHJlc291cmNlQ3VsdHVyZQBBcHBsaWNhdGlvblNldHRpbmdzQmFzZQBFZGl0b3JCcm93c2FibGVT
-dGF0ZQBDb21waWxlckdlbmVyYXRlZEF0dHJpYnV0ZQBEZWJ1Z2dlck5vblVzZXJDb2RlQXR0cmli
-dXRlAERlYnVnZ2FibGVBdHRyaWJ1dGUARWRpdG9yQnJvd3NhYmxlQXR0cmlidXRlAEFzc2VtYmx5
-VGl0bGVBdHRyaWJ1dGUAQXNzZW1ibHlUcmFkZW1hcmtBdHRyaWJ1dGUAVGFyZ2V0RnJhbWV3b3Jr
-QXR0cmlidXRlAEFzc2VtYmx5Q29uZmlndXJhdGlvbkF0dHJpYnV0ZQBBc3NlbWJseURlc2NyaXB0
-aW9uQXR0cmlidXRlAENvbXBpbGF0aW9uUmVsYXhhdGlvbnNBdHRyaWJ1dGUAQXNzZW1ibHlQcm9k
-dWN0QXR0cmlidXRlAEFzc2VtYmx5Q29weXJpZ2h0QXR0cmlidXRlAFNTSVNTY3JpcHRDb21wb25l
-bnRFbnRyeVBvaW50QXR0cmlidXRlAEFzc2VtYmx5Q29tcGFueUF0dHJpYnV0ZQBSdW50aW1lQ29t
-cGF0aWJpbGl0eUF0dHJpYnV0ZQBQcmVFeGVjdXRlAFBvc3RFeGVjdXRlAHZhbHVlAFN5c3RlbS5S
-dW50aW1lLlZlcnNpb25pbmcAU3lzdGVtLkNvbXBvbmVudE1vZGVsAFNDX2IwNzdlODAxNzlhNjRk
-MzJiZDg3MjcwYWExNmRhNDEyLmRsbABzZXRfQ29sdW1uX0lzTnVsbABTZXROdWxsAHNldF9JdGVt
-AFN5c3RlbQByZXNvdXJjZU1hbgBTY3JpcHRNYWluAHNldF9Db2x1bW4AU3lzdGVtLkNvbmZpZ3Vy
-YXRpb24AU3lzdGVtLkdsb2JhbGl6YXRpb24AU3lzdGVtLlJlZmxlY3Rpb24ASW52YWxpZE9wZXJh
-dGlvbkV4Y2VwdGlvbgBDdWx0dXJlSW5mbwBPdXRwdXROYW1lTWFwAE91dHB1dE1hcABPdXRwdXQw
-QnVmZmVyAFBpcGVsaW5lQnVmZmVyAFNjcmlwdEJ1ZmZlcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAC5j
-dG9yAC5jY3RvcgBPdXRwdXRJRHMAU3lzdGVtLkRpYWdub3N0aWNzAFN5c3RlbS5SdW50aW1lLkNv
-bXBpbGVyU2VydmljZXMAU3lzdGVtLlJlc291cmNlcwBTQ19iMDc3ZTgwMTc5YTY0ZDMyYmQ4NzI3
-MGFhMTZkYTQxMi5Qcm9wZXJ0aWVzLlJlc291cmNlcy5yZXNvdXJjZXMARGVidWdnaW5nTW9kZXMA
-U0NfYjA3N2U4MDE3OWE2NGQzMmJkODcyNzBhYTE2ZGE0MTIuUHJvcGVydGllcwBWYXJpYWJsZXMA
-QnVmZmVyQ29sdW1uSW5kZXhlcwBHZXRDb2x1bW5JbmRleGVzAFNldHRpbmdzAENvbm5lY3Rpb25z
-AEJ1ZmZlcnMARmluaXNoT3V0cHV0cwBDcmVhdGVOZXdPdXRwdXRSb3dzAE9iamVjdABNb2RlbFBy
-ZWRpY3QAU2V0RW5kT2ZSb3dzZXQAZ2V0X0RlZmF1bHQAVXNlckNvbXBvbmVudABQYXJlbnRDb21w
-b25lbnQAU2NyaXB0Q29tcG9uZW50AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuVHhTY3JpcHQATWljcm9z
-b2Z0LlNxbFNlcnZlci5QaXBlbGluZUhvc3QAUHJpbWVPdXRwdXQAQWRkUm93AGdldF9Bc3NlbWJs
-eQAAAAAAgJtJAHMATgB1AGwAbAAgAHAAcgBvAHAAZQByAHQAeQAgAGMAYQBuAG4AbwB0ACAAYgBl
-ACAAcwBlAHQAIAB0AG8AIABGAGEAbABzAGUALgAgAEEAcwBzAGkAZwBuACAAYQAgAHYAYQBsAHUA
-ZQAgAHQAbwAgAHQAaABlACAAYwBvAGwAdQBtAG4AIABpAG4AcwB0AGUAYQBkAC4AABFPAHUAdABw
-AHUAdAAgADAAAHFTAEMAXwBiADAANwA3AGUAOAAwADEANwA5AGEANgA0AGQAMwAyAGIAZAA4ADcA
-MgA3ADAAYQBhADEANgBkAGEANAAxADIALgBQAHIAbwBwAGUAcgB0AGkAZQBzAC4AUgBlAHMAbwB1
-AHIAYwBlAHMAAAAAyLkdFqaQp0GqC8C5llXqlAAEIAEBCAMgAAEFIAEBEREEIAEBDgUgAQERWQkg
-AwESPR0IEkEFIAIBCBwDIAACAwcBCAYAAggSQQ4FIAEdCAgGAAESdRF5BCAAEn0GIAIBDhJ9CLd6
-XFYZNOCJCImEXc2AgMyRAwYSFAMGEhgDBhIMAwYSRQMGElEDBhJVAwYSIAQgAQECCyAEAQgdCB0S
-PRJBBSABARJFBAAAElEEAAASVQUAAQESVQQAABIgAwAAAQMoAAgDKAACBAgAElEECAASVQQIABIg
-CAEACAAAAAAAHgEAAQBUAhZXcmFwTm9uRXhjZXB0aW9uVGhyb3dzAQgBAAIAAAAAACgBACNTQ19i
-MDc3ZTgwMTc5YTY0ZDMyYmQ4NzI3MGFhMTZkYTQxMgAABQEAAAAAFgEAEUNvcHlyaWdodCBAICAy
-MDIwAABJAQAaLk5FVEZyYW1ld29yayxWZXJzaW9uPXY0LjcBAFQOFEZyYW1ld29ya0Rpc3BsYXlO
-YW1lEi5ORVQgRnJhbWV3b3JrIDQuNwQBAAAAAAC0AAAAzsrvvgEAAACRAAAAbFN5c3RlbS5SZXNv
-dXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9
-bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0uUmVzb3VyY2Vz
-LlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAeDEAAAAAAAAAAAAAkjEA
-AAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIQxAAAAAAAAAAAAAAAAX0NvckRsbE1haW4AbXNjb3Jl
-ZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAAkB0AAAAgAAAAHgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAEgEAAAAQAAAAAYAAAAgAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAGAAAAACAAAAJgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAABs
+PQAAAAAAAEgAAAACAAUANCUAAEwXAAABAAAAAAAAAIA8AAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABMwCADcAAAAAQAAEQIoEAAAChcKAnsDAAAEbyEAAAYLAnsD
+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
+AAkBdAYQAJEAfgkGAJEAgwgGAJEAhgiHAKkAdAYGAKkAjQCfAKkA5wemALEAdAYGAKkAvQesABEB
+1gSyAKkAaQm5ABkBOgm/ADkBXwHGADkBjwnPAMEAdAbVAOEAdAYGAC4ACwBnAS4AEwBwAS4AGwCP
+AS4AIwCYAS4AKwDBAS4AMwDBAS4AOwDBAS4AQwCYAS4ASwDHAS4AUwDBAS4AWwDeAUMAYwAoAuMA
+awAoAiEBewAoAmkCcwCPAYkCcwCPARsATwBUAJsAAwABAAYADQAHABMACAAVAAAAFwFMAQAAVQRQ
+AQAArwdMAQAAqARQAQAAnwdMAQAAkQRQAQAAJgFMAQAAawRQAQAAAAJUAQAAgQRQAQAAiQlMAQAA
+wQRQAQAA8wNUAQAA7AFUAQAARwhMAQAACARUAQAAVghMAQAAewhUAQAABQZYAQAAtwFdAQAAlghi
+AQEABgADAAEABwAFAAEACAAHAAEACQAJAAEACgALAAEACwANAAEADAAPAAEADQARAAEADgATAAEA
+DwAVAAEAEAAXAAEAEQAZAAIAHAAbAAIAHQAdAAIAHgAfAAIAHwAhAAIAIAAjAAIAIQAlAAIAIwAn
+AAIAJAApAAEAJQApAAIAJgArAF8AbwAEgAAAAQAAAAAAAAAAAAAAAABaAAAABAAAAAAAAAAAAAAA
+3QDbAAAAAAAPAAAAAAAAAAAAAADmANgIAAAAAAEAAAAAAAAAAAAAAO8A0gAAAAAADwAAAAAAAAAA
+AAAA5gD1CAAAAAAEAAAAAAAAAAAAAADdAOgEAAAAAA8AAAAAAAAAAAAAAOYAswUAAAAADwAAAAAA
+AAAAAAAA5gCQBQAAAAAAAAAAAQAAAM8GAAAAAAAAAElEVFNDb21wb25lbnRNZXRhRGF0YTEwMABJ
+RFRTVmFyaWFibGUxMDAASURUU1ZhcmlhYmxlczEwMABJRFRTRXZhbHVhdG9yQ29udGV4dDEwMABM
+aXN0YDEAU0NfYjA3N2U4MDE3OWE2NGQzMmJkODcyNzBhYTE2ZGE0MTIASW50MzIAPE1vZHVsZT4A
+R2V0T3V0cHV0SUQAZ2V0X2luZGV4WABnZXRfQ29tcG9uZW50TWV0YURhdGEARXh0cmFjdERhdGEA
+UHJlZGljdERhdGEATW9kZWxMaWIAbXNjb3JsaWIAU3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMA
+TWFya091dHB1dHNGaW5pc2hlZABzZXRfVXBwZXJCb3VuZABzZXRfTG93ZXJCb3VuZABkZWZhdWx0
+SW5zdGFuY2UASURpc3Bvc2FibGUAUnVudGltZVR5cGVIYW5kbGUAR2V0VHlwZUZyb21IYW5kbGUA
+TWljcm9zb2Z0LlNxbFNlcnZlci5EdHMuUGlwZWxpbmUAVHlwZQBnZXRfQ3VsdHVyZQBzZXRfQ3Vs
+dHVyZQByZXNvdXJjZUN1bHR1cmUAQXBwbGljYXRpb25TZXR0aW5nc0Jhc2UARGlzcG9zZQBzZXRf
+RGF0ZQBnZXRfQ3V0T2ZmRGF0ZQBnZXRfU2FsZXNEYXRlAEVkaXRvckJyb3dzYWJsZVN0YXRlAENv
+bXBpbGVyR2VuZXJhdGVkQXR0cmlidXRlAERlYnVnZ2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUARGVi
+dWdnYWJsZUF0dHJpYnV0ZQBFZGl0b3JCcm93c2FibGVBdHRyaWJ1dGUAQXNzZW1ibHlUaXRsZUF0
+dHJpYnV0ZQBBc3NlbWJseVRyYWRlbWFya0F0dHJpYnV0ZQBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1
+dGUAQXNzZW1ibHlDb25maWd1cmF0aW9uQXR0cmlidXRlAEFzc2VtYmx5RGVzY3JpcHRpb25BdHRy
+aWJ1dGUAQ29tcGlsYXRpb25SZWxheGF0aW9uc0F0dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRy
+aWJ1dGUAQXNzZW1ibHlDb3B5cmlnaHRBdHRyaWJ1dGUAU1NJU1NjcmlwdENvbXBvbmVudEVudHJ5
+UG9pbnRBdHRyaWJ1dGUAQXNzZW1ibHlDb21wYW55QXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmls
+aXR5QXR0cmlidXRlAFByZUV4ZWN1dGUAUG9zdEV4ZWN1dGUAdmFsdWUAU3lzdGVtLlJ1bnRpbWUu
+VmVyc2lvbmluZwBnZXRfY29ubmVjdGlvblN0cmluZwBnZXRfTW9kZWxzUGF0aABTeXN0ZW0uQ29t
+cG9uZW50TW9kZWwAU0NfYjA3N2U4MDE3OWE2NGQzMmJkODcyNzBhYTE2ZGE0MTIuZGxsAHNldF9V
+cHBlckJvdW5kX0lzTnVsbABzZXRfTG93ZXJCb3VuZF9Jc051bGwAc2V0X0RhdGVfSXNOdWxsAHNl
+dF9BY3R1YWxTYWxlc19Jc051bGwAc2V0X0ZvcmVjYXN0U2FsZXNfSXNOdWxsAHNldF9JbmRleF9J
+c051bGwAU2V0TnVsbABnZXRfSXRlbQBzZXRfSXRlbQBTeXN0ZW0AcmVzb3VyY2VNYW4AU2NyaXB0
+TWFpbgBGaXJlSW5mb3JtYXRpb24AU3lzdGVtLkNvbmZpZ3VyYXRpb24AU3lzdGVtLkdsb2JhbGl6
+YXRpb24AU3lzdGVtLlJlZmxlY3Rpb24ASW52YWxpZE9wZXJhdGlvbkV4Y2VwdGlvbgBDdWx0dXJl
+SW5mbwBPdXRwdXROYW1lTWFwAE91dHB1dE1hcABNaWNyb3NvZnQuU3FsU2VydmVyLkRUU1J1bnRp
+bWVXcmFwAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRFRTUGlwZWxpbmVXcmFwAE91dHB1dDBCdWZmZXIA
+UGlwZWxpbmVCdWZmZXIAU2NyaXB0QnVmZmVyAGdldF9SZXNvdXJjZU1hbmFnZXIATWljcm9zb2Z0
+LlNxbFNlcnZlci5EdHMuUnVudGltZS5XcmFwcGVyAE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlBp
+cGVsaW5lLldyYXBwZXIAR2V0RW51bWVyYXRvcgAuY3RvcgAuY2N0b3IAT3V0cHV0SURzAFN5c3Rl
+bS5EaWFnbm9zdGljcwBTeXN0ZW0uUnVudGltZS5Db21waWxlclNlcnZpY2VzAFN5c3RlbS5SZXNv
+dXJjZXMAU0NfYjA3N2U4MDE3OWE2NGQzMmJkODcyNzBhYTE2ZGE0MTIuUHJvcGVydGllcy5SZXNv
+dXJjZXMucmVzb3VyY2VzAERlYnVnZ2luZ01vZGVzAFNDX2IwNzdlODAxNzlhNjRkMzJiZDg3Mjcw
+YWExNmRhNDEyLlByb3BlcnRpZXMAZ2V0X0ZvcmVjYXN0ZWRTYWxlcwBnZXRfVXBwZXJCb3VuZFNh
+bGVzAGdldF9Mb3dlckJvdW5kU2FsZXMAZ2V0X1RvdGFsU2FsZXMAc2V0X0FjdHVhbFNhbGVzAHNl
+dF9Gb3JlY2FzdFNhbGVzAGdldF9SZWFkT25seVZhcmlhYmxlcwBCdWZmZXJDb2x1bW5JbmRleGVz
+AEdldENvbHVtbkluZGV4ZXMAU2V0dGluZ3MAQ29ubmVjdGlvbnMAcHJlZGljdGlvbnMAQnVmZmVy
+cwBGaW5pc2hPdXRwdXRzAENyZWF0ZU5ld091dHB1dFJvd3MAZ2V0X0Z1dHVyZURheXMAZ2V0X1By
+ZXZpb3VzRGF5cwBPYmplY3QATW9kZWxQcmVkaWN0AGdldF9wcm9kdWN0AFNldEVuZE9mUm93c2V0
+AGdldF9EZWZhdWx0AFVzZXJDb21wb25lbnQAUGFyZW50Q29tcG9uZW50AFNjcmlwdENvbXBvbmVu
+dABnZXRfQ3VycmVudABNaWNyb3NvZnQuU3FsU2VydmVyLlR4U2NyaXB0AE1pY3Jvc29mdC5TcWxT
+ZXJ2ZXIuUGlwZWxpbmVIb3N0AFByaW1lT3V0cHV0AE1vZGVsT3V0cHV0RXh0AE1vdmVOZXh0AEdl
+dFZhbHVlV2l0aENvbnRleHQAU2NyaXB0Q29tcG9uZW50RXZhbENvbnRleHQAZ2V0X0V2YWx1YXRv
+ckNvbnRleHQAQWRkUm93AHNldF9JbmRleABnZXRfQXNzZW1ibHkAACNQAHIAbwBjAGUAcwBzACAA
+VgBhAGwAdQBlAHMAIAAxACkAADVDAHIAZQBhAHQAaQBuAGcAIABQAHIAZQBkAGkAYwB0ACAATwBi
+AGoAZQBjAHQALgAuAC4AAAEAI1AAcgBvAGMAZQBzAHMAIABWAGEAbAB1AGUAcwAgADIAKQAAJUUA
+eAB0AHIAYQBjAHQAaQBuAGcAIABkAGEAdABhAC4ALgAuAAAjUAByAG8AYwBlAHMAcwAgAFYAYQBs
+AHUAZQBzACAAMwApAAAnTQBhAGsAZQAgAFAAcgBlAGQAaQBjAHQAaQBvAG4AcwAuAC4ALgAAI1AA
+cgBvAGMAZQBzAHMAIABWAGEAbAB1AGUAcwAgADQAKQAAKUYAaQBuAGkAcwBoACAAUAByAGUAZABp
+AGMAaQB0AG8AbgAuAC4ALgAAgJtJAHMATgB1AGwAbAAgAHAAcgBvAHAAZQByAHQAeQAgAGMAYQBu
+AG4AbwB0ACAAYgBlACAAcwBlAHQAIAB0AG8AIABGAGEAbABzAGUALgAgAEEAcwBzAGkAZwBuACAA
+YQAgAHYAYQBsAHUAZQAgAHQAbwAgAHQAaABlACAAYwBvAGwAdQBtAG4AIABpAG4AcwB0AGUAYQBk
+AC4AABFPAHUAdABwAHUAdAAgADAAACFjAG8AbgBuAGUAYwB0AGkAbwBuAFMAdAByAGkAbgBnAAAV
+QwB1AHQATwBmAGYARABhAHQAZQAAFUYAdQB0AHUAcgBlAEQAYQB5AHMAABVNAG8AZABlAGwAcwBQ
+AGEAdABoAAAZUAByAGUAdgBpAG8AdQBzAEQAYQB5AHMAAA9wAHIAbwBkAHUAYwB0AABxUwBDAF8A
+YgAwADcANwBlADgAMAAxADcAOQBhADYANABkADMAMgBiAGQAOAA3ADIANwAwAGEAYQAxADYAZABh
+ADQAMQAyAC4AUAByAG8AcABlAHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAADNzJF9ZDta
+QqeYZiXSs6FmAAQgAQEIAyAAAQUgAQEREQQgAQEOBSABARFpCwcIAg4OCAgOEkECBCAAEnkKIAYB
+CA4ODggQAgYgAwEODg4GIAMOCAgOCSABFRI5ARI9CAQHAgICCgcCFRFFARI9Ej0GFRI5ARI9CCAA
+FRFFARMABhURRQESPQQgABMAAyAADAMgAAgDIAAOAyAAAgkgAwESTR0IElEFIAIBCBwDBwEIBgAC
+CBJRDgUgAR0ICAUgABKAiQYgARKAjRwFAAASgJEGIAEcEoCVCAABEoCdEYChBSAAEoClByACAQ4S
+gKUIt3pcVhk04IkIiYRdzYCAzJEItdKhO9IRF0oHBhUSOQESPQMGEhQDBhIYAwYSDAMGElUDBhJh
+AwYSZQMGEiAEIAEBAgsgBAEIHQgdEk0SUQUgAQESVQQAABJhBAAAEmUFAAEBEmUEAAASIAMAAAED
+KAAIAygAAgMoAA4ECAASYQQIABJlBAgAEiAIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRp
+b25UaHJvd3MBCAEAAgAAAAAAKAEAI1NDX2IwNzdlODAxNzlhNjRkMzJiZDg3MjcwYWExNmRhNDEy
+AAAFAQAAAAAWAQARQ29weXJpZ2h0IEAgIDIwMjAAAEkBABouTkVURnJhbWV3b3JrLFZlcnNpb249
+djQuNwEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUSLk5FVCBGcmFtZXdvcmsgNC43BAEAAAAAAAC0
+AAAAzsrvvgEAAACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VSZWFkZXIsIG1zY29ybGli
+LCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVj
+NTYxOTM0ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJjZVNldAIAAAAAAAAAAAAA
+AFBBRFBBRFC0AAAAYD0AAAAAAAAAAAAAej0AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGw9AAAA
+AAAAAAAAAAAAX0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAAEAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAEAEAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAA
-AEgAAABYQAAA7AMAAAAAAAAAAAAA7AM0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8A
-AAAAAL0E7/4AAAEAAAABAAAAAAAAAAEAAAAAAD8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABE
-AAAAAQBWAGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8A
-bgAAAAAAAACwBEwDAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAACgDAAABADAAMAAw
-ADAAMAA0AGIAMAAAABoAAQABAEMAbwBtAG0AZQBuAHQAcwAAAAAAAAAiAAEAAQBDAG8AbQBwAGEA
-bgB5AE4AYQBtAGUAAAAAAAAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAA
-AAAAUwBDAF8AYgAwADcANwBlADgAMAAxADcAOQBhADYANABkADMAMgBiAGQAOAA3ADIANwAwAGEA
-YQAxADYAZABhADQAMQAyAAAAMAAIAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAu
-ADAALgAwAAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAEMAXwBiADAANwA3AGUA
-OAAwADEANwA5AGEANgA0AGQAMwAyAGIAZAA4ADcAMgA3ADAAYQBhADEANgBkAGEANAAxADIALgBk
-AGwAbAAAAEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBwAHkAcgBpAGcA
-aAB0ACAAQAAgACAAMgAwADIAMAAAACoAAQABAEwAZQBnAGEAbABUAHIAYQBkAGUAbQBhAHIAawBz
-AAAAAAAAAAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBsAGUAbgBhAG0AZQAAAFMAQwBfAGIA
-MAA3ADcAZQA4ADAAMQA3ADkAYQA2ADQAZAAzADIAYgBkADgANwAyADcAMABhAGEAMQA2AGQAYQA0
-ADEAMgAuAGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEAbQBlAAAAAABTAEMAXwBiADAA
-NwA3AGUAOAAwADEANwA5AGEANgA0AGQAMwAyAGIAZAA4ADcAMgA3ADAAYQBhADEANgBkAGEANAAx
-ADIAAAA0AAgAAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADAALgAwAAAA
-OAAIAAEAQQBzAHMAZQBtAGIAbAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AMAAuADAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEA
+EAAAABgAAIAAAAAAAAAAAAAAAAAAAAEAAQAAADAAAIAAAAAAAAAAAAAAAAAAAAEAAAAAAEgAAABY
+QAAA7AMAAAAAAAAAAAAA7AM0AAAAVgBTAF8AVgBFAFIAUwBJAE8ATgBfAEkATgBGAE8AAAAAAL0E
+7/4AAAEAAAABAAAAAAAAAAEAAAAAAD8AAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAAABEAAAAAQBW
+AGEAcgBGAGkAbABlAEkAbgBmAG8AAAAAACQABAAAAFQAcgBhAG4AcwBsAGEAdABpAG8AbgAAAAAA
+AACwBEwDAAABAFMAdAByAGkAbgBnAEYAaQBsAGUASQBuAGYAbwAAACgDAAABADAAMAAwADAAMAA0
+AGIAMAAAABoAAQABAEMAbwBtAG0AZQBuAHQAcwAAAAAAAAAiAAEAAQBDAG8AbQBwAGEAbgB5AE4A
+YQBtAGUAAAAAAAAAAABwACQAAQBGAGkAbABlAEQAZQBzAGMAcgBpAHAAdABpAG8AbgAAAAAAUwBD
+AF8AYgAwADcANwBlADgAMAAxADcAOQBhADYANABkADMAMgBiAGQAOAA3ADIANwAwAGEAYQAxADYA
+ZABhADQAMQAyAAAAMAAIAAEARgBpAGwAZQBWAGUAcgBzAGkAbwBuAAAAAAAxAC4AMAAuADAALgAw
+AAAAcAAoAAEASQBuAHQAZQByAG4AYQBsAE4AYQBtAGUAAABTAEMAXwBiADAANwA3AGUAOAAwADEA
+NwA5AGEANgA0AGQAMwAyAGIAZAA4ADcAMgA3ADAAYQBhADEANgBkAGEANAAxADIALgBkAGwAbAAA
+AEgAEgABAEwAZQBnAGEAbABDAG8AcAB5AHIAaQBnAGgAdAAAAEMAbwBwAHkAcgBpAGcAaAB0ACAA
+QAAgACAAMgAwADIAMAAAACoAAQABAEwAZQBnAGEAbABUAHIAYQBkAGUAbQBhAHIAawBzAAAAAAAA
+AAAAeAAoAAEATwByAGkAZwBpAG4AYQBsAEYAaQBsAGUAbgBhAG0AZQAAAFMAQwBfAGIAMAA3ADcA
+ZQA4ADAAMQA3ADkAYQA2ADQAZAAzADIAYgBkADgANwAyADcAMABhAGEAMQA2AGQAYQA0ADEAMgAu
+AGQAbABsAAAAaAAkAAEAUAByAG8AZAB1AGMAdABOAGEAbQBlAAAAAABTAEMAXwBiADAANwA3AGUA
+OAAwADEANwA5AGEANgA0AGQAMwAyAGIAZAA4ADcAMgA3ADAAYQBhADEANgBkAGEANAAxADIAAAA0
+AAgAAQBQAHIAbwBkAHUAYwB0AFYAZQByAHMAaQBvAG4AAAAxAC4AMAAuADAALgAwAAAAOAAIAAEA
+QQBzAHMAZQBtAGIAbAB5ACAAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4AMAAuADAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -944,7 +1519,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAADAAAAKQxAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAADAAAAIw9AAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -953,7 +1528,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                   </arrayElements>
                 </property>
                 <property
@@ -970,7 +1545,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                   dataType="System.String"
                   description="Specifies a comma-separated list of read-only variables."
                   name="ReadOnlyVariables"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg">$Package::connectionString,$Package::CutOffDate,$Package::FutureDays,$Package::ModelsPath,$Package::PreviousDays,$Package::product</property>
                 <property
                   dataType="System.String"
                   description="Specifies a comma-separated list of read/write variables."
@@ -989,7 +1564,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                   dataType="System.String"
                   description="Checksum to match component metedata against compiled codes."
                   name="MetadataChecksum140"
-                  typeConverter="NOTBROWSABLE">4C</property>
+                  typeConverter="NOTBROWSABLE">CD</property>
                 <property
                   dataType="System.String"
                   name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
@@ -1001,10 +1576,37 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
                   name="Output 0">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[Column]"
+                      refId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[UpperBound]"
                       dataType="i4"
-                      lineageId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[Column]"
-                      name="Column" />
+                      lineageId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[UpperBound]"
+                      name="UpperBound" />
+                    <outputColumn
+                      refId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[ForecastSales]"
+                      dataType="i4"
+                      lineageId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[ForecastSales]"
+                      name="ForecastSales" />
+                    <outputColumn
+                      refId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[ActualSales]"
+                      dataType="i4"
+                      lineageId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[ActualSales]"
+                      name="ActualSales" />
+                    <outputColumn
+                      refId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[LowerBound]"
+                      dataType="i4"
+                      lineageId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[LowerBound]"
+                      name="LowerBound" />
+                    <outputColumn
+                      refId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[Date]"
+                      name="Date" />
+                    <outputColumn
+                      refId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[Index]"
+                      dataType="i4"
+                      lineageId="Package\Loads Forecasted data\Script Component.Outputs[Output 0].Columns[Index]"
+                      name="Index" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -1013,8 +1615,13 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
           </components>
           <paths>
             <path
+              refId="Package\Loads Forecasted data.Paths[Derived Column Output]"
+              endId="Package\Loads Forecasted data\Predictions.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\Loads Forecasted data\Adds ProcessId.Outputs[Derived Column Output]" />
+            <path
               refId="Package\Loads Forecasted data.Paths[Output 0]"
-              endId="Package\Loads Forecasted data\Derived Column.Inputs[Derived Column Input]"
+              endId="Package\Loads Forecasted data\Adds ProcessId.Inputs[Derived Column Input]"
               name="Output 0"
               startId="Package\Loads Forecasted data\Script Component.Outputs[Output 0]" />
           </paths>
@@ -1945,7 +2552,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
         <NodeLayout
           Size="185,42"
           Id="Package\Loads Forecasted data 1"
-          TopLeft="350,284" />
+          TopLeft="231,304" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1953,37 +2560,61 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
     design-time-name="Package\Loads Forecasted data">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Loads Forecasted data\Adds ProcessId"
+          TopLeft="11.5,107.5" />
         <NodeLayout
           Size="163,42"
           Id="Package\Loads Forecasted data\Script Component"
-          TopLeft="393,127" />
-        <NodeLayout
-          Size="154,42"
-          Id="Package\Loads Forecasted data\Derived Column"
-          TopLeft="391,314" />
+          TopLeft="5.50000000000001,5.5" />
         <EdgeLayout
           Id="Package\Loads Forecasted data.Paths[Output 0]"
-          TopLeft="471.25,169">
+          TopLeft="87,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,145"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,137.5">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,137.5" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-8,60.75,16,16"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="130,42"
+          Id="Package\Loads Forecasted data\Predictions"
+          TopLeft="22,209.5" />
+        <EdgeLayout
+          Id="Package\Loads Forecasted data.Paths[Derived Column Output]"
+          TopLeft="87,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
@@ -2001,5 +2632,18 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==]]></arrayElement>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Loads Forecasted data\Predictions">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
 </Objects>]]></DTS:DesignTimeProperties>
 </DTS:Executable>

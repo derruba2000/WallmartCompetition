@@ -11,4 +11,3 @@ C:\Src\WallmartComp\ModelTrainer\obj\Debug\netcoreapp3.1\ModelTrainer.csproj.Cop
 C:\Src\WallmartComp\ModelTrainer\obj\Debug\netcoreapp3.1\ModelTrainer.dll
 C:\Src\WallmartComp\ModelTrainer\obj\Debug\netcoreapp3.1\ModelTrainer.pdb
 C:\Src\WallmartComp\ModelTrainer\obj\Debug\netcoreapp3.1\ModelTrainer.genruntimeconfig.cache
-C:\Src\WallmartComp\ModelTrainer\obj\Debug\netcoreapp3.1\ModelTrainer.csprojAssemblyReference.cache

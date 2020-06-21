@@ -33,10 +33,10 @@ C:\Src\WallmartComp\ModelLib\bin\Debug\System.Memory.xml
 C:\Src\WallmartComp\ModelLib\bin\Debug\System.Numerics.Vectors.xml
 C:\Src\WallmartComp\ModelLib\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Src\WallmartComp\ModelLib\bin\Debug\System.Threading.Tasks.Dataflow.xml
-C:\Src\WallmartComp\ModelLib\obj\Debug\ModelLib.csprojAssemblyReference.cache
+C:\Src\WallmartComp\bin\ModelLib\ModelLib.dll
+C:\Src\WallmartComp\bin\ModelLib\ModelLib.pdb
 C:\Src\WallmartComp\ModelLib\obj\Debug\ModelLib.csproj.CoreCompileInputs.cache
 C:\Src\WallmartComp\ModelLib\obj\Debug\ModelLib.csproj.CopyComplete
 C:\Src\WallmartComp\ModelLib\obj\Debug\ModelLib.dll
 C:\Src\WallmartComp\ModelLib\obj\Debug\ModelLib.pdb
-C:\Src\WallmartComp\bin\ModelLib\ModelLib.dll
-C:\Src\WallmartComp\bin\ModelLib\ModelLib.pdb
+C:\Src\WallmartComp\ModelLib\obj\Debug\ModelLib.csprojAssemblyReference.cache

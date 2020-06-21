@@ -26,7 +26,7 @@
           <SSIS:Property SSIS:Name="CreatorComputerName">JOAOR-LAPTOP</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAcnCjW3bmi0K4XSsD3mVagwAAAAACAAAAAAAQZgAAAAEAACAAAACxhoYwEmTBQCsJNrdQOgPsbyrvWJx8P35WyCkDmGOcKwAAAAAOgAAAAAIAACAAAABOcZe8K/koXKxv8xTK/0MgIwXhAQCejujFMiiXqAONR5AAAADba/jHia3I+km1syGKjjHHeL9s3jZr9VHsGXPfrtuvjjti3yOsDYp4MzWbnbOpcV14ilKxuYYU5v+qoBRUtj/RUntWeoKl0LBvxLEhpLphvcP7IAt8Q1j49JLhcixOFtFGVHUuDi1KMarBHXzZUPaoxazUPRBuyp93CFEDYynntDb/3V4Cu0tTHBU/CnzQEG9AAAAA6gyDB7ZFrQWUz/X2V1VTZo3yRHoOTc4EnSN6uJXfC8uq6f58+OfkiN7qOt41BMNuYEmkz1y8lRO/QdDGQXd0mQ==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAcnCjW3bmi0K4XSsD3mVagwAAAAACAAAAAAAQZgAAAAEAACAAAADcsgmiFireTdSC2BaY37UWtr53Ot3w3cCP/MHCVl1U4QAAAAAOgAAAAAIAACAAAADZGIgEGEGrEUUUmjLYOv+pPHCU15OAEe15HnJ/uWNgRZAAAACAqoSe8sxJ5p5VDhsY6KmxtF89U6VYkboCooTTO3zaIGBGZIs9iBPZN0LbPJGQeoVEfSHGTl1a9IXHxtUCgZGO5M/r2C1OGEz287KLvQyTz16z4/2KecTfL11l4+KsI5Wh8E+h3169W8GGaPMlhTRyik9ukPKXdUEkifY65w09TxBUrc/EvTiOdtBV5u4ODXJAAAAAygos12Byqor4kDz5GwRSywrTnN9wrCdxmorP30rDEzvR6N5CHayPwxR60CbwnLpQWxVWGXblxaEOyraULhVR3A==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
@@ -804,17 +804,31 @@
                 <SSIS:Property SSIS:Name="Name">Package1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMajor">1</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionMinor">0</SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionBuild">16</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionBuild">27</SSIS:Property>
                 <SSIS:Property SSIS:Name="VersionComments">
                 </SSIS:Property>
-                <SSIS:Property SSIS:Name="VersionGUID">{06F1F31E-3AC9-49A3-8A47-E8D69256086F}</SSIS:Property>
+                <SSIS:Property SSIS:Name="VersionGUID">{7515FD16-6C2A-4186-84B7-DE57A0FF7AB8}</SSIS:Property>
                 <SSIS:Property SSIS:Name="PackageFormatVersion">8</SSIS:Property>
                 <SSIS:Property SSIS:Name="Description">
                 </SSIS:Property>
                 <SSIS:Property SSIS:Name="ProtectionLevel">1</SSIS:Property>
               </SSIS:Properties>
               <SSIS:Parameters>
-                <SSIS:Parameter SSIS:Name="forecastDate">
+                <SSIS:Parameter SSIS:Name="connectionString">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{42423385-409C-4669-8F6F-14CD79163F2F}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">Server=localhost;Database=kaggle_wallmart;Integrated Security=True;</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="CutOffDate">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">{46D471B6-87AD-4227-A473-80895DE2DBFC}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
@@ -824,11 +838,11 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">12-02-2016</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">2016-05-23</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="forecastWindow">
+                <SSIS:Parameter SSIS:Name="FutureDays">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">{7CF1C88A-3C7A-435F-9828-F95FB80C291B}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
@@ -838,11 +852,39 @@
                     <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">7</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">28</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="productName">
+                <SSIS:Parameter SSIS:Name="ModelsPath">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{6BBEA768-0A3E-4A56-A7A3-460D154DF708}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">c:\temp\WallMartModels</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="PreviousDays">
+                  <SSIS:Properties>
+                    <SSIS:Property SSIS:Name="ID">{652FD2E4-0A5A-4A4C-94FF-FC156EF4B673}</SSIS:Property>
+                    <SSIS:Property SSIS:Name="CreationName">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="Description">
+                    </SSIS:Property>
+                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="Value">0</SSIS:Property>
+                    <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
+                  </SSIS:Properties>
+                </SSIS:Parameter>
+                <SSIS:Parameter SSIS:Name="product">
                   <SSIS:Properties>
                     <SSIS:Property SSIS:Name="ID">{5B7EAA24-671F-44B6-893C-983459A66967}</SSIS:Property>
                     <SSIS:Property SSIS:Name="CreationName">
@@ -854,20 +896,6 @@
                     <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
                     <SSIS:Property SSIS:Name="Value">HOBBIES_1_278_CA_1_evaluation</SSIS:Property>
                     <SSIS:Property SSIS:Name="DataType">18</SSIS:Property>
-                  </SSIS:Properties>
-                </SSIS:Parameter>
-                <SSIS:Parameter SSIS:Name="timeWindow">
-                  <SSIS:Properties>
-                    <SSIS:Property SSIS:Name="ID">{652FD2E4-0A5A-4A4C-94FF-FC156EF4B673}</SSIS:Property>
-                    <SSIS:Property SSIS:Name="CreationName">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="Description">
-                    </SSIS:Property>
-                    <SSIS:Property SSIS:Name="IncludeInDebugDump">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Required">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Sensitive">0</SSIS:Property>
-                    <SSIS:Property SSIS:Name="Value">365</SSIS:Property>
-                    <SSIS:Property SSIS:Name="DataType">9</SSIS:Property>
                   </SSIS:Properties>
                 </SSIS:Parameter>
               </SSIS:Parameters>

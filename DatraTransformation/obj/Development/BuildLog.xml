@@ -2,7 +2,7 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>DatraTransformation</Name>
-    <LastWriteTime>2020-06-20T14:11:25.2166704Z</LastWriteTime>
+    <LastWriteTime>2020-06-21T20:36:41.7307065Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
@@ -13,7 +13,7 @@
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>ConsumingModelTrainer.dtsx</Name>
-      <LastWriteTime>2020-06-20T17:32:03.819777Z</LastWriteTime>
+      <LastWriteTime>2020-06-21T20:52:56.5606907Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>

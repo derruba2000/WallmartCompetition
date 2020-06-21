@@ -52,26 +52,19 @@ namespace ModelTrainer
                     outputColumnName: "ForecastedSales",
                     inputColumnName: "TotalSales",
                     windowSize: 7,
-                    seriesLength: 30,
-                    trainSize: 1798,
+                    seriesLength: 60,
+                    trainSize: 300,
                     horizon: 30,
                     confidenceLevel: 0.95f,
                     confidenceLowerBoundColumn: "LowerBoundSales",
                     confidenceUpperBoundColumn: "UpperBoundSales");
-
             SsaForecastingTransformer forecaster = forecastingPipeline.Fit(trainingData);
-
             Evaluate(ValidationData, forecaster, ctx);
-
             var forecastEngine = forecaster.CreateTimeSeriesEngine<ModelInput, ModelOutput>(ctx);
             forecastEngine.CheckPoint(ctx, "c:\\temp\\Model.zip");
-
-
+            forecastEngine.CheckPoint(ctx, "C:\\Temp\\WallMartModels\\evaluation\\Model_HOBBIES_1_278_CA_1_evaluation.zip");
             Forecast(ValidationData, 7, forecastEngine, ctx);
-
-
             Console.WriteLine("Training time series analysis completed");
-
         }
 
         static void Evaluate(IDataView testData, ITransformer model, MLContext mlContext)
