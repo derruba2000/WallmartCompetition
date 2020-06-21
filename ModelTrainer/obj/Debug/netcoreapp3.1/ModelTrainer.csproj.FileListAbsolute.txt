@@ -1,0 +1,14 @@
+C:\Src\WallmartComp\bin\ModelTrainer\netcoreapp3.1\ModelTrainer.exe
+C:\Src\WallmartComp\bin\ModelTrainer\netcoreapp3.1\ModelTrainer.deps.json
+C:\Src\WallmartComp\bin\ModelTrainer\netcoreapp3.1\ModelTrainer.runtimeconfig.json
+C:\Src\WallmartComp\bin\ModelTrainer\netcoreapp3.1\ModelTrainer.runtimeconfig.dev.json
+C:\Src\WallmartComp\bin\ModelTrainer\netcoreapp3.1\ModelTrainer.dll
+C:\Src\WallmartComp\bin\ModelTrainer\netcoreapp3.1\ModelTrainer.pdb
+C:\Src\WallmartComp\ModelTrainer\obj\Debug\netcoreapp3.1\ModelTrainer.AssemblyInfoInputs.cache
+C:\Src\WallmartComp\ModelTrainer\obj\Debug\netcoreapp3.1\ModelTrainer.AssemblyInfo.cs
+C:\Src\WallmartComp\ModelTrainer\obj\Debug\netcoreapp3.1\ModelTrainer.csproj.CoreCompileInputs.cache
+C:\Src\WallmartComp\ModelTrainer\obj\Debug\netcoreapp3.1\ModelTrainer.csproj.CopyComplete
+C:\Src\WallmartComp\ModelTrainer\obj\Debug\netcoreapp3.1\ModelTrainer.dll
+C:\Src\WallmartComp\ModelTrainer\obj\Debug\netcoreapp3.1\ModelTrainer.pdb
+C:\Src\WallmartComp\ModelTrainer\obj\Debug\netcoreapp3.1\ModelTrainer.genruntimeconfig.cache
+C:\Src\WallmartComp\ModelTrainer\obj\Debug\netcoreapp3.1\ModelTrainer.csprojAssemblyReference.cache

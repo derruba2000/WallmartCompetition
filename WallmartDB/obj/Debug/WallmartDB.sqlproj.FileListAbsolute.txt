@@ -1,0 +1,6 @@
+C:\Src\WallmartComp\bin\dbProject\WallmartDB.dacpac
+C:\Src\WallmartComp\bin\dbProject\WallmartDB.dll
+C:\Src\WallmartComp\bin\dbProject\WallmartDB.pdb
+C:\Src\WallmartComp\WallmartDB\obj\Debug\WallmartDB.dll
+C:\Src\WallmartComp\WallmartDB\obj\Debug\WallmartDB.pdb
+C:\Src\WallmartComp\WallmartDB\obj\Debug\WallmartDB.sqlprojAssemblyReference.cache

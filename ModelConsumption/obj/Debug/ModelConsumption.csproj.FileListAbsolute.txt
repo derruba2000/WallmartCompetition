@@ -1,0 +1,8 @@
+C:\Src\WallmartComp\bin\ModelConsumption\ModelConsumption.exe.config
+C:\Src\WallmartComp\bin\ModelConsumption\ModelConsumption.exe
+C:\Src\WallmartComp\bin\ModelConsumption\ModelConsumption.pdb
+C:\Src\WallmartComp\ModelConsumption\obj\Debug\ModelConsumption.csprojAssemblyReference.cache
+C:\Src\WallmartComp\ModelConsumption\obj\Debug\ModelConsumption.csproj.CoreCompileInputs.cache
+C:\Src\WallmartComp\ModelConsumption\obj\Debug\ModelConsumption.exe
+C:\Src\WallmartComp\ModelConsumption\obj\Debug\ModelConsumption.pdb
+C:\Src\WallmartComp\ModelConsumption\obj\Debug\ModelConsumption.csproj.CopyComplete

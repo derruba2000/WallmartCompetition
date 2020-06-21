@@ -1,0 +1,21 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dbo].[RAW_Calendar] (Table)
+       [dbo].[RAW_Samplesubmission] (Table)
+       [dbo].[RAW_SellPrices] (Table)
+       [dbo].[RAW_Train_Eval] (Table)
+       [dbo].[RAW_Train_Valid] (Table)
+       [dbo].[vw_Train_Eval] (View)
+       [dbo].[vw_Train_Valid] (View)
+
+** Supporting actions
